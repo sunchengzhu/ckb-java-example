@@ -18,6 +18,8 @@ public class Main {
 
         // https://github.com/ckb-devrel/offckb/blob/d10b42920463068db4eb757b23a82de7eaf63476/account/account.json#L47-L67
         String sender = "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqvkvhntcxtxas4lejj0z9uz62usduuy8rcwg4fr9";
+        // data2 ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwspysgtepyxuhvl05052xylr3wa9esc3x6rcym3khk
+        // String receiver = "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwspysgtepyxuhvl05052xylr3wa9esc3x6rcym3khk";
         String receiver = "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqgdl92j7574rgmc4w3x00y93kk6g3lggqq23mmmd";
         Iterator<TransactionInput> iterator = new InputIterator(sender);
         TransactionBuilderConfiguration configuration = new TransactionBuilderConfiguration(Network.TESTNET);
