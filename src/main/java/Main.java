@@ -6,15 +6,36 @@ import org.nervos.ckb.sign.TransactionWithScriptGroups;
 import org.nervos.ckb.transaction.CkbTransactionBuilder;
 import org.nervos.ckb.transaction.InputIterator;
 import org.nervos.ckb.transaction.TransactionBuilderConfiguration;
+import org.nervos.ckb.type.Script;
 import org.nervos.ckb.type.TransactionInput;
 import org.nervos.ckb.utils.Numeric;
+import org.nervos.ckb.utils.address.Address;
 
 import java.io.IOException;
+import java.util.Formatter;
 import java.util.Iterator;
 
 public class Main {
+
+    public static String bytesToHex(byte[] bytes) {
+        Formatter formatter = new Formatter();
+        for (byte b : bytes) {
+            formatter.format("%02x", b);
+        }
+        String result = "0x" + formatter.toString();
+        formatter.close();
+        return result;
+    }
+
     public static void main(String[] args) throws IOException {
         CkbRpcApi ckbApi = new Api("https://testnet.ckb.dev/");
+
+        Address address = Address.decode("ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqvkvhntcxtxas4lejj0z9uz62usduuy8rcwg4fr9");
+        System.out.println(address.getNetwork());
+        Script script = address.getScript();
+        System.out.println(script.hashType);
+        System.out.println(bytesToHex(script.codeHash));
+        System.out.println(bytesToHex(script.args));
 
         // https://github.com/ckb-devrel/offckb/blob/d10b42920463068db4eb757b23a82de7eaf63476/account/account.json#L47-L67
         String sender = "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqvkvhntcxtxas4lejj0z9uz62usduuy8rcwg4fr9";
