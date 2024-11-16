@@ -25,7 +25,7 @@ public class Main {
         TransactionBuilderConfiguration configuration = new TransactionBuilderConfiguration(Network.TESTNET);
         configuration.setFeeRate(1000);
         TransactionWithScriptGroups txWithGroups = new CkbTransactionBuilder(configuration, iterator)
-                .addOutput(receiver, 50100000000L)
+                .addOutput(receiver, 11160000000L)
                 .setChangeOutput(sender)
                 .build();
         // 0. Set your private key
