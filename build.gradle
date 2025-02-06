@@ -7,7 +7,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.nervos.ckb:ckb:2.1.1'
+    implementation 'org.nervos.ckb:ckb:3.0.0-alpha'
+    implementation 'org.nervos.ckb:core:3.0.0-alpha'
+    implementation 'org.nervos.ckb:utils:3.0.0-alpha'
 }
 
 //dependencies {

@@ -30,18 +30,20 @@ public class Main {
     public static void main(String[] args) throws IOException {
         CkbRpcApi ckbApi = new Api("https://testnet.ckb.dev/");
 
-        Address address = Address.decode("ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqvkvhntcxtxas4lejj0z9uz62usduuy8rcwg4fr9");
-        System.out.println(address.getNetwork());
-        Script script = address.getScript();
-        System.out.println(script.hashType);
-        System.out.println(bytesToHex(script.codeHash));
-        System.out.println(bytesToHex(script.args));
-
         // https://github.com/ckb-devrel/offckb/blob/d10b42920463068db4eb757b23a82de7eaf63476/account/account.json#L47-L67
         String sender = "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqvkvhntcxtxas4lejj0z9uz62usduuy8rcwg4fr9";
         // data2 ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwspysgtepyxuhvl05052xylr3wa9esc3x6rcym3khk
         // String receiver = "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwspysgtepyxuhvl05052xylr3wa9esc3x6rcym3khk";
         String receiver = "ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqgdl92j7574rgmc4w3x00y93kk6g3lggqq23mmmd";
+
+        Address address = Address.decode(receiver);
+        System.out.println(address.getNetwork());
+        Script script = address.getScript();
+        System.out.println("Code Hash: " + script.hashType);
+        System.out.println("Hash Type: " + bytesToHex(script.codeHash));
+        System.out.println("Args: " + bytesToHex(script.args));
+        System.out.println();
+
         Iterator<TransactionInput> iterator = new InputIterator(sender);
         TransactionBuilderConfiguration configuration = new TransactionBuilderConfiguration(Network.TESTNET);
         configuration.setFeeRate(1000);
@@ -55,6 +57,6 @@ public class Main {
         TransactionSigner.getInstance(Network.TESTNET).signTransaction(txWithGroups, privateKey);
         // 2. Send transaction to CKB node
         byte[] txHash = ckbApi.sendTransaction(txWithGroups.txView);
-        System.out.println(Numeric.toHexString(txHash));
+        System.out.println("tx Hash: " + Numeric.toHexString(txHash));
     }
 }
