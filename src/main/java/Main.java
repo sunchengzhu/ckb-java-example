@@ -22,7 +22,7 @@ public class Main {
         for (byte b : bytes) {
             formatter.format("%02x", b);
         }
-        String result = "0x" + formatter.toString();
+        String result = "0x" + formatter;
         formatter.close();
         return result;
     }
